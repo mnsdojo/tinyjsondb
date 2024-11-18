@@ -7,7 +7,8 @@ import (
 
 // Load reads a JSON file from the specified filePath and decodes it into the target map.
 func Load(filepath string, target *map[string]interface{}) error {
-	file, err := os.Open(filepath)
+	// Open file with read-only permissions
+	file, err := os.OpenFile(filepath, os.O_RDONLY, 0644)
 	if err != nil {
 		return err
 	}
